@@ -1,5 +1,5 @@
-# InstantPalgrave
-Instant Palgrave, the open-source digital assistant
+# InstantPalgrave lite
+Instant Palgrave, the open-source digital assistant for systems with little memory.
 
 
 ## Setup dev
