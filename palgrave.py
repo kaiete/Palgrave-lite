@@ -8,7 +8,6 @@ import requests
 import webbrowser
 import urllib.parse
 import datetime
-from playsound import playsound
 
 import pyaudio
 import spotipy
@@ -72,44 +71,17 @@ class BaseRobot():
 
 
 class EchoImplementation(BaseRobot):
-	"""
-	Annoying bot that just repeats what you say.
-	"""
-	def callback_receive_text(self, text):
-		self.respond(text)
-
-
+	print("This is not available on InstantPalgrave lite")
 class ReverseImplementation(BaseRobot):
-	"""
-	Bot that reverses what it hears:
-	"Hi how are you" -> "you are how hi"
-	"""
-	def callback_receive_text(self, text):
-		words = text.split()
-		reversed_words = " ".join(reversed(words))
-		self.respond(reversed_words)
-
-
+	print("This is not available on InstantPalgrave lite")
 class BackwardsImplementation(BaseRobot):
-	"""
-	Bot that repeats you but backwards:
-	"Hi how are you" -> "uoy era woh ih"
-	"""
-	def callback_receive_text(self, text):
-		self.respond(text[::-1])
-
-
+	print("This is not available on InstantPalgrave lite")
 class PalgraveImplementation(BaseRobot):
-	"""
-	The best bot
-	"""
-
 	def setup(self):
 		self.mode = None
 		self.spotify_enabled = False
 		self.spotify_token = None
 		self.last = None
-
 	def enable_spotify(self):
 		if self.spotify_enabled:
 			self.respond("Already enabled")
@@ -130,7 +102,6 @@ class PalgraveImplementation(BaseRobot):
 		self.spotify_token = token
 		self.spotify_enabled = True
 		self.respond("Music enabled")
-
 	def get_spotify_currently_playing(self):
 		if not self.spotify_enabled:
 			self.respond("Music mode is not enabled")
@@ -144,14 +115,12 @@ class PalgraveImplementation(BaseRobot):
 			trackname,
 			artist,
 		))
-
 	def unpause_spotify(self):
 		if not self.spotify_enabled:
 			self.respond("Music mode is not enabled")
 			return
 		spotify = spotipy.Spotify(auth=self.spotify_token)
 		spotify.start_playback()
-		
 	def pause_spotify(self):
 		if not self.spotify_enabled:
 			self.respond("Music mode is not enabled")
@@ -159,7 +128,6 @@ class PalgraveImplementation(BaseRobot):
 		spotify = spotipy.Spotify(auth=self.spotify_token)
 		spotify.pause_playback()
 		self.respond("Paused")
-
 	def callback_receive_text(self, text):
 		if self.mode == "awaitingSearch":
 			webbrowser.open("https://duckduckgo.com/?q=" + urllib.parse.quote(text))
